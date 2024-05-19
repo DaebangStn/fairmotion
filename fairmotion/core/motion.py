@@ -138,9 +138,9 @@ class Skeleton(object):
     def __init__(
         self,
         name="skeleton",
-        v_up=np.array([0.0, 1.0, 0.0]),
-        v_face=np.array([0.0, 0.0, 1.0]),
-        v_up_env=np.array([0.0, 1.0, 0.0]),
+        v_up=np.array([0.0, 0.0, 1.0]),
+        v_face=np.array([0.0, 1.0, 0.0]),
+        v_up_env=np.array([0.0, 0.0, 1.0]),
     ):
         self.name = name
         self.joints = []

@@ -80,7 +80,7 @@ def create_skeleton_from_amass_bodymodel(bm, betas, num_joints, joint_names):
 
 
 def create_motion_from_amass_data(filename, bm, override_betas=None):
-    bdata = np.load(filename)
+    bdata = np.load(filename, allow_pickle=True)
 
     if override_betas is not None:
         betas = torch.Tensor(override_betas[:10][np.newaxis]).to("cpu")
@@ -91,7 +91,7 @@ def create_motion_from_amass_data(filename, bm, override_betas=None):
         bm, betas, len(joint_names), joint_names,
     )
 
-    fps = float(bdata["mocap_framerate"])
+    fps = float(bdata["mocap_frame_rate"])
     root_orient = bdata["poses"][:, :3]  # controls the global root orientation
     pose_body = bdata["poses"][:, 3:66]  # controls body joint angles
     trans = bdata["trans"][:, :3]  # controls the finger articulation

@@ -50,9 +50,9 @@ class Viewer:
         self.time_checker = utils.TimeChecker()
         if cam is None:
             self.cam_cur = camera.Camera(
-                pos=np.array([0.0, 2.0, 4.0]),
-                origin=np.array([0.0, 0.0, 0.0]),
-                vup=np.array([0.0, 1.0, 0.0]),
+                pos=np.array([0.0, 4.0, 2.0]),
+                origin=np.array([0.0, 0.0, 1.0]),
+                vup=np.array([0.0, 0.0, 1.0]),
                 fov=45.0,
             )
         else:
