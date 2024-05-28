@@ -12,10 +12,11 @@ from intergen.motion import create_motion_from_amass_data
 class Player(MocapViewer):
     def __init__(self, dataset_dir: str, smpl_path='smpl.pkl'):
         self._inited = False
+        self._play_speed_memo = 1.0
         self._bm = load_body_model(smpl_path)
         self._dataset_dir = Path(dataset_dir)
         self._seek_dataset()
-        self._load_motion(1)
+        self._load_motion(1136)
         super().__init__(self.loaded_motion, scale=0.1, render_overlay=True)
         self._inited = True
 
@@ -28,6 +29,12 @@ class Player(MocapViewer):
         elif key == b'i':
             motion_id = int(input("Enter motion id: "))
             self._load_motion(motion_id)
+        elif key == b' ':
+            if self.play_speed == 0:
+                self.play_speed = self._play_speed_memo
+            else:
+                self._play_speed_memo = self.play_speed
+                self.play_speed = 0
 
     def overlay_callback(self):
         if self.render_overlay:
